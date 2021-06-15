@@ -1,7 +1,7 @@
 {
   "name": "vue-creator-preview",
   "description": "Creator Preview for VueJS 2+",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "author": "Gobie Nanthakumar <gobienan@gmail.com>",
   "license": "MIT",
