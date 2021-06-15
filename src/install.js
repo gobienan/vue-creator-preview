@@ -2,7 +2,7 @@ import CreatorPreview from './CreatorPreview.vue';
 
 export default {
   install(Vue) {
-    Vue.component('creator-preview', CreatorPreview);
+    Vue.component('vue-creator-preview', CreatorPreview);
   },
 };
 

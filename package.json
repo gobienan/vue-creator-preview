@@ -1,11 +1,11 @@
 {
   "name": "vue-creator-preview",
   "description": "Creator Preview for VueJS 2+",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "author": "Gobie Nanthakumar <gobienan@gmail.com>",
   "license": "MIT",
-  "main": "./dist/vue-creator-preview.common.min.js",
+  "main": "./dist/vue-creator-preview.common.js",
   "files": [
     "dist/*"
   ],
@@ -36,20 +36,6 @@
     "sass-loader": "8.0.2",
     "vue-sfc-rollup": "4.0.5",
     "vue-template-compiler": "2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
   },
   "browserslist": [
     "> 1%",
