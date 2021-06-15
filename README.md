@@ -1,5 +1,9 @@
 # vue-creator-preview
 
+[![npm version](https://img.shields.io/npm/v/vue-creator-preview)](https://www.npmjs.org/package/vue-creator-preview)
+[![install size](https://packagephobia.now.sh/badge?p=vue-creator-preview)](https://packagephobia.now.sh/result?p=vue-creator-preview)
+[![npm downloads](https://img.shields.io/npm/dm/vue-creator-preview.svg?style=flat-square)](http://npm-stat.com/charts.html?package=vue-creator-preview)
+
 ## Introduction
 
 A preview component of the creator with more information on hover.
