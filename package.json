@@ -1,48 +1,60 @@
 {
   "name": "vue-creator-preview",
   "description": "Creator Preview for VueJS 2+",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "author": "Gobie Nanthakumar <gobienan@gmail.com>",
   "license": "MIT",
-  "main": "./dist/vue-creator-preview.common.js",
+  "main": "dist/vue-creator-preview.ssr.js",
+  "browser": "dist/vue-creator-preview.esm.js",
+  "module": "dist/vue-creator-preview.esm.js",
+  "unpkg": "dist/vue-creator-preview.min.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/**/*.vue"
   ],
-  "keywords": [
-    "preview",
-    "creator",
-    "vue-creator-preview"
-  ],
+  "sideEffects": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-library": "vue-cli-service build --target lib --name vue-creator-preview ./src/install.js",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve dev/serve.js",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {},
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.5.0",
-    "@vue/cli-plugin-eslint": "4.5.0",
-    "@vue/cli-service": "4.5.0",
+    "@babel/core": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "@rollup/plugin-alias": "3.1.1",
+    "@rollup/plugin-babel": "5.2.2",
+    "@rollup/plugin-commonjs": "17.0.0",
+    "@rollup/plugin-node-resolve": "11.0.1",
+    "@rollup/plugin-replace": "2.3.4",
+    "@vue/cli-plugin-babel": "4.5.10",
+    "@vue/cli-service": "4.5.10",
     "@vue/eslint-config-prettier": "6.0.0",
     "animejs": "3.2.1",
     "babel-eslint": "10.1.0",
-    "core-js": "3.6.5",
+    "cross-env": "7.0.3",
     "eslint": "7.28.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-vue": "7.11.1",
+    "minimist": "1.2.5",
     "prettier": "2.3.1",
+    "rollup": "2.36.1",
+    "rollup-plugin-prettier": "2.1.0",
+    "rollup-plugin-terser": "7.0.2",
+    "rollup-plugin-vue": "5.1.9",
     "sass": "1.35.0",
     "sass-loader": "8.0.2",
-    "vue": "2.6.11",
+    "vue": "2.6.12",
     "vue-click-outside": "1.1.0",
-    "vue-sfc-rollup": "4.0.5",
-    "vue-template-compiler": "2.6.11"
+    "vue-template-compiler": "2.6.12"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "peerDependencies": {
+    "vue": "2.6.12"
+  },
+  "engines": {
+    "node": ">=12"
+  }
 }

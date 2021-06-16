@@ -88,6 +88,7 @@ export default {
     opacity: 0;
     padding: 20px;
     pointer-events: none;
+    color: black;
 
     > * {
       will-change: auto;
