@@ -75,12 +75,13 @@ Click on the link to visit my website 👇🏾`,
 
 Below are the options you can pass to the preview
 
-| **Option**  | **Type**        | **Default** | **Description**                                          |
-| ----------- | --------------- | ----------- | -------------------------------------------------------- |
-| avatar      | String          | ''          | URL of the avatar image you want to get displayed        |
-| name        | String / HTML | ''          | Name of the Creator                                      |
-| description | String / HTML | ''          | Short description displayed below the name               |
-| content     | String / HTML | ''          | 'Content with additional informations about the creator' |
+| **Option**  | **Type**      | **Default**                                 | **Description**                                         |
+| ----------- | ------------- | ------------------------------------------- | ------------------------------------------------------- |
+| avatar      | String        | 'https://source.boringavatars.com/beam/90/' | URL of the avatar image you want to get displayed       |
+| name        | String / HTML | 'Creator'                                   | Name of the Creator                                     |
+| description | String / HTML | 'Developer, Founder'                        | Short description displayed below the name              |
+| content     | String / HTML | ''                                          | 'Content with additional information about the creator' |
+| mode        | String        | 'light'                                     | 'switch between `dark` and light `mode`'                |
 
 ## License
 
