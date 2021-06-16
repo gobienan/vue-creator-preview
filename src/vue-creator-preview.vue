@@ -1,5 +1,8 @@
 <template>
-  <div class="CreatorPreview--Wrap" :class="[{ 'is-dark': mode === 'dark' }]">
+  <div
+    class="CreatorPreview--Wrap"
+    :class="[{ 'is-light': mode === 'light' }, { 'is-dark': mode === 'dark' }]"
+  >
     <span class="CreatorPreview--Link" v-html="name" @mouseover="showPreview" />
     <div class="CreatorPreview" ref="creatorPreview" v-click-outside="hidePreview">
       <div class="CreatorPreview--Person">
@@ -9,7 +12,7 @@
           <p class="CreatorPreview--Description" v-html="description" />
         </div>
       </div>
-      <p class="CreatorPreview--Content" v-html="content" />
+      <p class="CreatorPreview--Content" v-if="content" v-html="content" />
     </div>
   </div>
 </template>
@@ -19,11 +22,30 @@ import ClickOutside from 'vue-click-outside';
 
 export default {
   props: {
-    avatar: String,
-    name: String,
-    description: String,
-    content: String,
-    mode: String,
+    avatar: {
+      type: String,
+      default: 'https://source.boringavatars.com/beam/90/',
+    },
+    name: {
+      type: String,
+      default: 'Creator',
+    },
+    description: {
+      type: String,
+      default: 'Developer, Founder',
+    },
+    content: {
+      type: String,
+      default: '',
+    },
+    mode: {
+      type: String,
+      default: 'light',
+      validator: function (value) {
+        // The value must match one of these strings
+        return ['light', 'dark'].indexOf(value) !== -1;
+      },
+    },
   },
   directives: {
     ClickOutside,
@@ -99,7 +121,6 @@ export default {
     }
 
     .CreatorPreview--Person {
-      margin-bottom: 20px;
       display: flex;
       align-items: center;
     }
@@ -134,6 +155,7 @@ export default {
 
     .CreatorPreview--Content {
       font-size: 0.85rem;
+      margin-top: 20px;
     }
 
     .CreatorPreview--Link {
