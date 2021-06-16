@@ -78,9 +78,9 @@ Below are the options you can pass to the preview
 | **Option**  | **Type**        | **Default** | **Description**                                          |
 | ----------- | --------------- | ----------- | -------------------------------------------------------- |
 | avatar      | String          | ''          | URL of the avatar image you want to get displayed        |
-| name        | [String / HTML] | ''          | Name of the Creator                                      |
-| description | [String / HTML] | ''          | Short description displayed below the name               |
-| content     | [String / HTML] | ''          | 'Content with additional informations about the creator' |
+| name        | String / HTML | ''          | Name of the Creator                                      |
+| description | String / HTML | ''          | Short description displayed below the name               |
+| content     | String / HTML | ''          | 'Content with additional informations about the creator' |
 
 ## License
 
