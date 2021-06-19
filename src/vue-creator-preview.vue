@@ -112,6 +112,11 @@ export default {
     pointer-events: none;
     color: black;
 
+    @media (max-width: 500px) {
+      position: fixed;
+      width: calc(100vw - 40px);
+    }
+
     > * {
       will-change: auto;
     }
