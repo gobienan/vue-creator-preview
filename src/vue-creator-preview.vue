@@ -55,10 +55,10 @@ export default {
       const element = this.$refs.creatorPreview;
       if (element.classList.contains('is-visible')) return;
       element.classList.add('is-visible');
-
+      const isMobile = window.innerWidth <= 500;
       anime({
         targets: element,
-        translateY: ['-130%', '-120%'],
+        translateY: isMobile ? ['0px', '-20px'] : ['-130%', '-120%'],
         translateX: ['-50%', '-50%'],
         opacity: [0, 1],
         easing: 'spring(1, 80, 12, 4)',
@@ -68,10 +68,11 @@ export default {
       const element = this.$refs.creatorPreview;
       if (!element.classList.contains('is-visible')) return;
       element.classList.remove('is-visible');
+      const isMobile = window.innerWidth <= 500;
 
       anime({
         targets: this.$refs.creatorPreview,
-        translateY: ['-120%', '-130%'],
+        translateY: isMobile ? ['-20px', '0'] : ['-120%', '-130%'],
         translateX: ['-50%', '-50%'],
         opacity: [1, 0],
         easing: 'spring(1, 80, 10, 4)',
@@ -114,7 +115,7 @@ export default {
 
     @media (max-width: 500px) {
       position: fixed;
-      width: calc(100vw - 40px);
+      bottom: 0;
     }
 
     > * {
