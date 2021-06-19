@@ -3,7 +3,7 @@
     class="CreatorPreview--Wrap"
     :class="[{ 'is-light': mode === 'light' }, { 'is-dark': mode === 'dark' }]"
   >
-    <span class="CreatorPreview--Link" v-html="name" @mouseover="showPreview" />
+    <span class="CreatorPreview--Link" v-html="name" ref="creatorLink" @mouseover="showPreview" />
     <div class="CreatorPreview" ref="creatorPreview" v-click-outside="hidePreview">
       <div class="CreatorPreview--Person">
         <img class="CreatorPreview--Avatar" :src="avatar" alt="Creator Avatar" />
@@ -19,6 +19,8 @@
 <script>
 import anime from 'animejs';
 import ClickOutside from 'vue-click-outside';
+const OFFSET = 20;
+const isMobile = window.innerWidth < 500;
 
 export default {
   props: {
@@ -55,11 +57,16 @@ export default {
       const element = this.$refs.creatorPreview;
       if (element.classList.contains('is-visible')) return;
       element.classList.add('is-visible');
-      const isMobile = window.innerWidth <= 500;
+      const { y, x, width: linkWidth } = this.$refs.creatorLink.getBoundingClientRect();
+      const { width: elementWidth } = element.getBoundingClientRect();
       anime({
         targets: element,
-        translateY: isMobile ? ['0px', '-20px'] : ['-130%', '-120%'],
-        translateX: ['-50%', '-50%'],
+        left: isMobile
+          ? ['50%', '50%']
+          : [x - (elementWidth - linkWidth) / 2, x - (elementWidth - linkWidth) / 2],
+        bottom: window.innerHeight - y + OFFSET,
+        translateY: ['20%', 0],
+        translateX: isMobile ? ['-50%', '-50%'] : 0,
         opacity: [0, 1],
         easing: 'spring(1, 80, 12, 4)',
       });
@@ -68,12 +75,16 @@ export default {
       const element = this.$refs.creatorPreview;
       if (!element.classList.contains('is-visible')) return;
       element.classList.remove('is-visible');
-      const isMobile = window.innerWidth <= 500;
-
+      const { y, x, width: linkWidth } = this.$refs.creatorLink.getBoundingClientRect();
+      const { width: elementWidth } = element.getBoundingClientRect();
       anime({
         targets: this.$refs.creatorPreview,
-        translateY: isMobile ? ['-20px', '0'] : ['-120%', '-130%'],
-        translateX: ['-50%', '-50%'],
+        left: isMobile
+          ? ['50%', '50%']
+          : [x - (elementWidth - linkWidth) / 2, x - (elementWidth - linkWidth) / 2],
+        bottom: window.innerHeight - y + OFFSET,
+        translateY: [0, '20%'],
+        translateX: isMobile ? ['-50%', '-50%'] : 0,
         opacity: [1, 0],
         easing: 'spring(1, 80, 10, 4)',
       });
@@ -98,25 +109,20 @@ export default {
   }
 
   .CreatorPreview {
-    width: clamp(320px, 30vw, 360px);
+    width: clamp(250px, 30vw, 360px);
     opacity: 0;
     z-index: 1;
-    position: absolute;
+    position: fixed;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 60px 0 rgba(black, 0.15);
     will-change: auto;
-    left: 50%;
-    transform: translateZ(0) translateY(-120%) translateX(-50%);
+    left: 0;
+    bottom: 0;
     opacity: 0;
     padding: 20px;
     pointer-events: none;
     color: black;
-
-    @media (max-width: 500px) {
-      position: fixed;
-      bottom: 0;
-    }
 
     > * {
       will-change: auto;
